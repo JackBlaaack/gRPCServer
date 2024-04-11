@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package peoplePackage;
+
+message Person {
+  required string id = 1;
+  required string name = 2;
+  int32 age = 3;
+}
+
+service PeopleService {
+  rpc addPerson(Person) returns (Response);
+  rpc findPersonByName(Request) returns (Person);
+  rpc findPersonById(Request) returns (Person);
+  rpc updatePerson(Request2) returns (Response);
+  rpc getAllPeople(Empty) returns (PeopleList);
+  rpc deletePerson(Request) returns (Response);
+}
+
+message Empty {
+
+}
+
+message Request {
+  string name = 1;
+  string id = 2;
+}
+message Request2 {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message Response {
+  string message = 1;
+}
+message PeopleList {
+  repeated Person people = 1;
+}
+
